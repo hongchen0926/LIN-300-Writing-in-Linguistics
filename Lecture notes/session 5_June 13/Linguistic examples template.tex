@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage{textglos} % good semantic markup for inline examples, like \xv{...}, \xm{...}, etc.
+%\usepackage{fixltx2e} % only needed if you have TeX Live < 2015
+\newcommand*{\IND}[1]{\textsubscript{#1}}
+\usepackage{gb4e}
+\noautomath % you should always declare this after loading gb4e
+
+\usepackage{forest}%% for linguistic trees
+
+\usepackage{tikz} % for linguistic trees
+\usepackage{tikz-qtree, ,tikz-qtree-compat} % for linguistic trees
+\tikzset{every tree node/.style={align=center, anchor=north}}% set up the arrows 
+
+\usepackage{tipa} % for IPA
+\usepackage{phonrule} % for ponology rule
+
+
+\usepackage{amsmath}	% for semantic representation
+\usepackage{stmaryrd}	% for semantic representation [[ ]]
+\newcommand{\evaluation}[2][]{\ensuremath{\llbracket #2\rrbracket^{#1}}}	% semantic representation [[ ]]
+
+\begin{document}
+
+
+\section{Basic Linguistic examples}
+
+
+\begin{exe}
+\ex[?]{His mother loves every boy no matter what.}
+\label{ex:questionable-English} %give the sentence a name, later you can cite it. 
+\end{exe}
+
+\begin{exe}
+\ex[]{Strong crossover
+\begin{xlist}
+\ex[*]{He loves everyone.} %%% to make the X_i index, you can use X\IND{i} or X_{i}, but it doesn't work for the Overleaf complier. 
+\ex[*]{She thinks everyone is smart}
+\label{ex:everyone-is-smart}
+\end{xlist}
+}
+\label{ex:strong-crossover}
+\end{exe}
+
+According to native speakers, (\ref{ex:questionable-English}) is marginally acceptable. %%\ref{} is the command for cross-reference
+
+The examples in (\ref{ex:strong-crossover}) exemplify the phenomenon of strong crossover.
+For example, in (\ref{ex:everyone-is-smart}), \textit{she} c-commands \textit{everyone}.
+However, pronouns cannot c-command their binders.
+
+
+\section{Glossing examples}
+\begin{exe}
+\ex\label{korean example} This is a Korean example. 
+\gll Nwukwu-na ku mwuncey-lul phwu-ess-ta.\\
+		who-\textsc{na} that problem-\textsc{acc} solve-\textsc{past}-\textsc{decl}\\
+\glt `Everyone solved that problem.'
+\end{exe}
+
+
+\section{Typsetting trees with forest package}
+For drawing a tree, line breaks are not necessary. You could have produced the same output by writing [VP [V] [DP] ].\\
+\begin{exe}
+\ex{
+\begin{forest}
+[\textcolor{red}{VP}
+[\textcolor{blue}{V}]
+[\textcolor{blue}{DP}]
+]
+\end{forest}
+}
+\end{exe}
+
+
+\section{Typsetting trees with tikz packages}
+\begin{exe}
+\ex{
+\Tree	[.S
+							[.NP 
+								[.N John ] 
+							]
+							[.VP 
+								[.V loves ]
+								[.NP 
+									[.N Mary ] 
+								]
+							]
+						]\\
+}
+\end{exe}
+
+You center a tree by using ``center'' command.
+\begin{exe}
+\ex{
+                            \begin{center}
+                                  \Tree [.S [.NP LaTeX ] [.VP [.V is ] [.NP fun ] ] ]
+                            \end{center}
+}
+\end{exe}
+
+\section{Typsetting trees with movements}
+ You can draw tree with movement.\\
+  \begin{tikzpicture} % this means that you can call command for drawing curves
+      \Tree	[.S
+                 [.\node(M){Mary_1}; ]
+                 [.S
+							[.NP 
+								[.N John ] 
+							]
+							[.VP 
+								[.V loves ]
+								[.NP 
+									[.N \node(Mtrace){$<$t_1$>$}; ] 
+								]
+							]
+						]
+                                        ]\\
+ % \draw[->] (Mtrace) [in=-90,out=-90,looseness=1.5]  to (M); %you also can assgin looseness=1.0 or 0.5. It depends on you.
+ %\draw[->] (Mtrace) [in=-120,out=-100,looseness=1, red]  to (M); % you also can change the color of the row
+\draw[->] (Mtrace) [in=-120,out=-100,looseness=1, dashed,red]  to (M); %you also can change the shape of the row
+ \end{tikzpicture}
+
+
+
+\section{Typsetting IPA}
+You can make cool IPA fonts in \LaTeX{} with the \textit{tipa} package.\\
+ % add packages for ipa
+                             \begin{center}
+                                  \textipa{abcdefghijklmnopqrstuvwxyz}          \\
+                                       \textipa{ABCDEFGHIJKLMNOPQRSTUVWXYZ}\\    
+
+                                      \textipa{! * + = ? . , / [ ] ( ) ` ' | ||}    \\   %% symbols
+                                      \textipa{1234567890 @}                       \\  %% vowels
+                                    \textipa{\;A \;B \;E \;G \;H \;I \;L \;R \;Y} \\  
+                                    \textipa{\:d \:l \:n \:r \:s \:t \:z}         \\
+                                     \textipa{\!b \!d \!g \!j \!G \!o} \\
+                             \end{center} 
+
+                          
+ You can make really pretty phonological rules too!\\
+\begin{center}
+%add package for phonology rule
+\phonb{\phonfeat{+stop \\ +consonant \\ +alveolar} }{\textipa{R}}{\phonfeat{+vowel \\ +stressed} }{\phonfeat{+vowel \\ +stressed} }\\
+ \end{center}
+
+
+\section{Typsetting Semantics}
+You can write semantic equations more easily.\\
+\begin{exe}
+\ex \evaluation{X\mbox{-}na \ Q} = $ \forall x_i [(x_i \in X) \supset Q(x_i)] $  where X = $ \{x_1, x_2, \cdots x_n\} $\\
+
+\ex $\exists x [white(x) \& dog(x)]$ \\
+\ex $\forall x [linguist(x) \rightarrow know(x, $\LaTeX$)]$
+\end{exe}
+
+
+
+
+\end{document}

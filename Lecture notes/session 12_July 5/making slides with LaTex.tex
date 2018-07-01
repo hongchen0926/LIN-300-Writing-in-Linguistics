@@ -1,0 +1,70 @@
+\documentclass{beamer}
+
+    \setbeamercolor{block title}{fg=black,bg=blue!50!white}
+    \setbeamercolor{block body}{fg=blue, bg=blue!10!white}
+
+    \usepackage{graphicx}
+
+
+\begin{document}
+
+     \begin{frame}
+	      \title{LIN 300  \LaTeX~ tutorial (continued)}
+		\author{Hongchen Wu (Put your name instead)\\
+			                          \texttt{hongchen.wu@stonybrook.edu}}
+		\date{July 5, 2017}
+	      \maketitle
+      \end{frame}
+
+	\begin{frame}
+	      \frametitle{Slides in Latex}
+	     This is the first slide I created with \LaTeX. 
+	\end{frame}
+
+     \begin{frame}
+           \frametitle{Playing around with timing}
+		\begin{itemize}
+		\item Beamer allows you to pause between texts
+           \pause
+		\item<2-> and to do trickier overlays
+		\item<3-> with timing and so forth
+		\item\only<4>{other stuff can come now}
+		\item<5-> and it’s pretty cool (naturally)
+		\item<3->timing!
+		\end{itemize}
+      \end{frame}
+
+    \begin{frame}
+         \frametitle{Using blocks}
+         \begin{block}{First Block Heading}
+              Check this block out!
+         \end{block}
+    \end{frame}
+
+    \begin{frame}
+         \frametitle{Drawing tables}
+         \begin{block}{A truth-value table}
+                \begin{center}
+		              \begin{tabular}{cc|ccc}
+		                   p & q & p & $\wedge $ & q \\
+		                   \hline
+		                   T & T & T & T & T \\
+		                   F & F & F & F & F \\
+		                   T & F & T & F & T \\
+		                   F & T & F & F & T 
+		               \end{tabular}
+                \end{center}
+         \end{block}
+    \end{frame}
+
+   
+     \begin{frame}
+         \frametitle{Including graphics}
+         \begin{block}{An important graph}
+                \begin{center}
+                    \includegraphics[width=.8\textwidth]{example-image-a}
+                \end{center}
+          \end{block}
+     \end{frame}
+
+\end{document}

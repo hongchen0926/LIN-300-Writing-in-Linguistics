@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{graphicx}% package for inserting pictures
+\usepackage{booktabs} % package for tables
+ \usepackage{capt-of} % packages for non-float tables and pictures
+
+
+\begin{document}
+
+\section{Basic table in \LaTeX{}}
+ You can draw a nice tabular with latex.\\
+% create 5 rows with P ∧ R at the top separated by a
+% horizontal line: hline
+%let's creat a truth-table
+                           \begin{tabular}{cc|ccc}
+                                   p & q & p & $\wedge $ & q \\
+                                   \hline
+                                    T & T & T & T & T \\
+                                    F & F & F & F & F \\
+                                    T & F & T & F & T \\
+                                    F & T & F & F & T 
+\end{tabular}
+
+
+\section{Tables as float}
+This is a table that is a float.
+\begin{table}[htbp]
+\centering %%% a way to center something
+\begin{tabular}{lll}
+\toprule
+& Passive sentences & Active sentences \\ \midrule
+Adults & 99\% & 98\% \\
+Children & 56\% & 87\% \\
+\bottomrule
+\end{tabular}
+\caption{Adult performance compared to child performance}
+\end{table}
+It might not actually show up in between these two sentences.
+This is a figure that is a float.
+
+
+\section{Images as float}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.8\textwidth]{example-image-a}
+\caption{Super scientificy graphy thingy}
+\end{figure}
+It might not actually show up in between these two sentences.
+
+
+\section{Tables and Images as non-float}
+%%% \usepackage{capt-of}
+This is a table that is not a float.
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+& Passive sentences & Active sentences \\ \midrule
+Adults & 99\% & 98\% \\
+Children & 56\% & 87\% \\
+\bottomrule
+\end{tabular}
+\captionof{table}{Adult performance compared to child performance}
+\end{center}
+It will show up in between these two sentences no matter what.
+
+
+This is a figure that is not a float.
+\begin{center}
+\includegraphics[width=.8\textwidth]{example-image-a}
+\captionof{figure}{Super scientificy graphy thingy}
+\end{center}
+It will show up in between these two sentences no matter what.
+
+
+\end{document}
